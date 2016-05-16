@@ -1,0 +1,23 @@
+body {
+	font-size: 14px;
+	line-height: 1.5;
+	color: #333;
+	background: white;
+}
+
+.center-section {
+	max-width: 960px;
+	position: relative;
+	margin: 0px auto;
+}
+
+.nav {
+	background-color: #fafafa;
+}
+
+canvas {
+	position: relative;
+	margin: 10px auto;
+	display: block;
+}
+
