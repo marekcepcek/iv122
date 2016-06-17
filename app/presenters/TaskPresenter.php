@@ -11,6 +11,8 @@ class TaskPresenter extends BasePresenter
 			'vector',
 			'line',
 			'bitmapImage',
+			'vectorImage',
+			'turtle',
 			$this->action,
 		];
 

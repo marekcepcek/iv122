@@ -1,32 +1,79 @@
 {block content}
 <a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-rozcvicka.pdf">Zadanie</a><br>
 <a href="/www/js/numbers.js">Zdrojový kód</a>
-<h2>A</h2>
-<h3>1</h3>
-<canvas id="canvasA1" width="256" height="256"></canvas>
-<h3>2</h3>
-<canvas id="canvasA2" width="256" height="256"></canvas>
-<input type="number" min="1" max="64" value="16" class="js-split-count-input">
-<div class="section">
-	<h2>B</h2>
-	<h3>1</h3>
-	<canvas id="canvasB1" width="256" height="256"></canvas>
-	<h3>2</h3>
-	<canvas id="canvasB2" width="256" height="256"></canvas>
-	<input type="number" min="2" max="10000" value="6000" class="js-collatz-max-number-input">
-</div>
-<div id="sectionC" class="section">
-	<h2>C</h2>
-	<canvas id="canvasC" width="256" height="256"></canvas>
-	<div class="btn-group" role="group">
-		<button type="button" class="btn btn-default active js-variant-button" data-variant="prime">Prvočísla</button>
-		<button type="button" class="btn btn-default js-variant-button" data-variant="mod-3">Mod 3</button>
-		<button type="button" class="btn btn-default js-variant-button" data-variant="mod-7">Mod 7</button>
+
+<!-- A -->
+<section>
+	<div class="page-header">
+		<h2>A</h2>
 	</div>
-</div>
-<div class="section">
-	<h2>D</h2>
-	<canvas id="canvasD" width="256" height="256"></canvas>
-	<input type="number" min="1" max="1024" value="256" class="js-nsd-number-input">
-</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>1</h3>
+			<canvas id="canvasA1" width="256" height="256"></canvas>
+		</div>
+		<div class="col-md-6">
+			<h3>2</h3>
+			<canvas id="canvasA2" width="256" height="256"></canvas>
+			<div class="form-group">
+				<label>Hustota:</label>
+				<input type="number" min="1" max="64" value="16" class="js-split-count-input form-control">
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- B -->
+<section>
+	<div class="page-header">
+		<h2>B</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>1</h3>
+			<canvas id="canvasB1" width="256" height="256"></canvas>
+		</div>
+		<div class="col-md-6">
+			<h3>2</h3>
+			<canvas id="canvasB2" width="256" height="256"></canvas>
+			<input type="number" min="2" max="10000" value="6000" class="js-collatz-max-number-input form-control">
+		</div>
+	</div>
+</section>
+
+<!-- C -->
+<section>
+	<div class="page-header">
+		<h2>C</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<canvas id="canvasC" width="256" height="256"></canvas>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default active js-variant-button" data-variant="prime">Prvočísla</button>
+				<button type="button" class="btn btn-default js-variant-button" data-variant="mod-3">Mod 3</button>
+				<button type="button" class="btn btn-default js-variant-button" data-variant="mod-7">Mod 7</button>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<!-- @TODO text -->
+		</div>
+	</div>
+</section>
+
+<!-- D -->
+<section>
+	<div class="page-header">
+		<h2>D</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<canvas id="canvasD" width="256" height="256"></canvas>
+			<input type="number" min="1" max="1024" value="256" class="js-nsd-number-input form-control">
+		</div>
+		<div class="col-md-6">
+			<!-- @TODO text -->
+		</div>
+	</div>
+</section>
 {/block}

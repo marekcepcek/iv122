@@ -141,7 +141,7 @@ $(function () {
 
     var image = new BitmapImage(canvas.width, canvas.height);
 
-    var variantButtons = $('#sectionC .js-variant-button');
+    var variantButtons = $('.js-variant-button');
     
     var draw = function () {
 

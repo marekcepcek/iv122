@@ -17,10 +17,6 @@ BitmapImage.prototype = {
 
     return this;
   },
-//	setRed : function (x, y, value) {
-//		var index = x *
-//		this.imageData.data
-//	},
   getWidth: function () {
     return this.imageData.width;
   },
@@ -40,6 +36,6 @@ BitmapImage.prototype = {
   draw: function (context, left, top) {
     context.putImageData(this.imageData, left, top);
   }
-}
+};
 
 

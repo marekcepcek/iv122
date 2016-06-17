@@ -1,8 +1,6 @@
 body {
-	font-size: 14px;
-	line-height: 1.5;
-	color: #333;
-	background: white;
+  padding-top: 70px;
+  padding-bottom: 30px;
 }
 
 .center-section {
@@ -11,13 +9,9 @@ body {
 	margin: 0px auto;
 }
 
-.nav {
-	background-color: #fafafa;
-}
-
-canvas {
+canvas, svg {
 	position: relative;
-	margin: 10px auto;
+	margin: 25px auto;
 	display: block;
 }
 

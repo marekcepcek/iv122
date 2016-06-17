@@ -6,21 +6,36 @@
 		<meta n:if="$page->keywords" name="keywords" content="{$page->keywords}">
 		<title>{$page->title}</title>
 		<link n:foreach="$cssFiles as $cssFile" href="{$basePath}/css/{$cssFile}.css" rel="stylesheet" type="text/css">
-		<link href="http://fonts.googleapis.com/css?family=Titillium+Web&subset=latin-ext,latin" rel="stylesheet" type="text/css">
 		<link rel="shortcut icon" type="image/png" href="favicon.png">
-		<link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width">
 		{block head}{/block}
 	</head>
 	<body>
-		<ul class="nav nav-tabs nav-justified">
-			<li n:foreach="$navTabs as $navTab" role="presentation" n:class="$navTab->presenter == $presenter->name && $navTab->action == $presenter->action ? 'active'"><a href="{link $navTab->presenter.':'.$navTab->action}">{$navTab->title}</a></li>
-		</ul>
-		<div class="center-section">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Bootstrap theme</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li n:foreach="$navTabs as $navTab" n:class="$navTab->presenter == $presenter->name && $navTab->action == $presenter->action ? 'active'"><a href="{link $navTab->presenter.':'.$navTab->action}">{$navTab->title}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container theme-showcase" role="main">
 			{include content}
 		</div>
+
 		{block scripts}
-			<script n:foreach="$jsFiles as $jsFile" src="{$basePath}/js/{$jsFile}.js"></script>
+		<script n:foreach="$jsFiles as $jsFile" src="{$basePath}/js/{$jsFile}.js"></script>
 		{/block}
 		{block afterJs}{/block}
 	</body>

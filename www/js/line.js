@@ -12,7 +12,7 @@ var Line = function (a, b) {
 
 Line.prototype = {
 
-   /**
+  /**
    *
    * @param {CanvasRenderingContext2D} context
    * @returns {undefined}
@@ -20,10 +20,23 @@ Line.prototype = {
   draw: function (context) {
     context.save();
     context.beginPath();
-    context.moveTo(this.a.x, this.a.y);
-    context.lineTo(this.b.x, this.b.y);
+    context.moveTo(this.a.x, -1 * this.a.y);
+    context.lineTo(this.b.x, -1 * this.b.y);
     context.stroke();
     context.restore();
+  },
+
+  drawSvg: function () {
+    return '<line x1="' + this.a.x + '" y1="' + this.a.y + '" x2="' + this.b.x + '" y2="' + this.b.y + '" style="stroke:rgb(' + 0 + ',' + 0 + ',' + 0 + ');stroke-width:' + 2 + '" />';
+  },
+  
+  getBox: function () {
+    return {
+      top: Math.max(this.a.y, this.b.y),
+      right: Math.max(this.a.x, this.b.x),
+      bottom: Math.min(this.a.y, this.b.y),
+      left: Math.min(this.a.x, this.b.x)
+    };
   },
 
   /**

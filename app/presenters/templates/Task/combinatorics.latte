@@ -1,3 +1,78 @@
 {block content}
 <a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-cisla.pdf">Zadanie</a>
+
+<!-- A -->
+<section>
+	<div class="page-header">
+		<h2>A, Generovanie kombinácií, permutácií a variácií</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<label>Zoznam:</label>
+			<input type="text" value="A,B,C,D" placeholder="napr. A,B,C" class="js__section-a__list-input form-control">
+		</div>
+		<div class="col-md-6">
+			<label>Počet (k):</label>
+			<input type="number" value="2" min="1" class="js__section-a__number-input form-control">
+		</div>
+	</div>
+	<br>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Permutácie</div>
+	  <div class="panel-body js__section-a__permutations-output"></div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">K-prvkové kombinácie s opakovaním</div>
+	  <div class="panel-body js__section-a__combinations-output"></div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">K-prvkové variácie s opakovaním</div>
+	  <div class="panel-body js__section-a__variations-output"></div>
+	</div>
+</section>
+
+<!-- B -->
+<section>
+	<div class="page-header">
+		<h2>B, Pascalov trojuholník</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<label>Počet riadkov (n):</label>
+			<input type="number" value="48" min="1" class="js__section-b__n-input form-control">
+		</div>
+		<div class="col-md-6">
+			<label>Zvyšok po delení (d):</label>
+			<input type="number" value="2" min="1" class="js__section-b__d-input form-control">
+		</div>
+	</div>
+	<canvas id="canvasB" width="256" height="256"></canvas>
+</section>
+
+<!-- C -->
+<section>
+	<div class="page-header">
+		<h2>C, Približné umocňovanie</h2>
+	</div>
+	@TODO
+</section>
+
+<!-- D -->
+<section>
+	<div class="page-header">
+		<h2>D, Výpočet π</h2>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">GL rada</div>
+	  <div class="panel-body js__section-d__gl-output">Výpočet...</div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Archimedova rada</div>
+	  <div class="panel-body js__section-d__a-output">Výpočet...</div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Monte Carlo</div>
+	  <div class="panel-body js__section-d__mc-output">Výpočet...</div>
+	</div>
+</section>
 {/block}

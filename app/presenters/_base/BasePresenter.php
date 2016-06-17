@@ -20,6 +20,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 */
     public $config;
 
+
 	public function beforeRender()
 	{
 		parent::beforeRender();
@@ -89,10 +90,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	public function getJsFilenames()
 	{
 		return [
-			'jquery-1.12.2',
-			'bootstrap',
-			'netteForms',
-			'nette.ajax',
+			'vendor/jquery-1.12.4.min',
+			'vendor/bootstrap.min',
+			'vendor/netteForms',
+			'vendor/nette.ajax',
 			'init',
 			'scripts',
 		];
@@ -105,7 +106,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	public function getCssFilenames()
 	{
 		return [
-			'bootstrap',
+			'vendor/bootstrap.min',
+			'vendor/bootstrap-theme.min',
 			'style',
 		];
 	}
