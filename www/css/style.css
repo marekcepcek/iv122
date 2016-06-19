@@ -17,3 +17,22 @@ canvas, svg, iframe {
 	display: block;
 }
 
+
+.nav .full-word {
+	display: inline-block;
+}
+
+.nav .one-letter {
+	display: none;
+}
+
+
+@media (max-width: 1201px) and (min-width: 768px) {
+	.nav .full-word {
+		display: none;
+	}
+
+	.nav .one-letter {
+		display: inline-block;
+	}
+}

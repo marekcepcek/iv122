@@ -24,7 +24,18 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li n:foreach="$navTabs as $navTab" n:class="$navTab->presenter == $presenter->name && $navTab->action == $presenter->action ? 'active'"><a href="{link $navTab->presenter.':'.$navTab->action}">{$navTab->title}</a></li>
+						{foreach $navTabs as $navTab}
+							{ifset $navTab->subTabs}
+								<li n:class="$navTab->active ? 'active', 'dropdown'">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="{$navTab->title}"><span class="one-letter">{Nette\Utils\Strings::truncate($navTab->title, 3)}</span><span class="full-word">{$navTab->title}</span> <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li n:foreach="$navTab->subTabs as $subTab" n:class="$subTab->active ? 'active'"><a href="{link $subTab->presenter.':'.$subTab->action}" title="{$subTab->title}">{$subTab->title}</a></li>
+									</ul>
+								</li>
+							{else}
+								<li  n:class="$navTab->active ? 'active'"><a href="{link $navTab->presenter.':'.$navTab->action}" title="{$navTab->title}"><span class="one-letter">{Nette\Utils\Strings::truncate($navTab->title, 3)}</span><span class="full-word">{$navTab->title}</span></a></li>
+							{/ifset}
+						{/foreach}
 					</ul>
 				</div>
 			</div>

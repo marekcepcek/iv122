@@ -4,10 +4,15 @@
  */
 var Turtle = function () {
   this.lines = new VectorImage();
-  this.angle = 0;
-  this.x = 0;
-  this.y = 0;
-  this.active = true;
+
+  this.state = {
+    x: 0,
+    y: 0,
+    angle: 0,
+    active: true
+  };
+
+  this.stack = [];
 };
 
 Turtle.prototype = {
@@ -37,15 +42,15 @@ Turtle.prototype = {
    * @returns {Turtle}
    */
   move: function (step, direction) {
-    var x = this.x + direction * step * Math.cos(this.angle * Math.PI / 180);
-    var y = this.y + direction * step * Math.sin(this.angle * Math.PI / 180);
+    var x = this.state.x + direction * step * Math.cos(this.state.angle);
+    var y = this.state.y + direction * step * Math.sin(this.state.angle);
 
-    if (this.active) {
-      this.lines.add(new Line(new Point(this.x, this.y), new Point(x, y)));
+    if (this.state.active) {
+      this.lines.add(new Line(new Point(this.state.x, this.state.y), new Point(x, y)));
     }
 
-    this.x = x;
-    this.y = y;
+    this.state.x = x;
+    this.state.y = y;
 
     return this;
   },
@@ -56,7 +61,7 @@ Turtle.prototype = {
    * @returns {Turtle}
    */
   right: function (angle) {
-    this.angle = (this.angle + angle) % 360;
+    this.state.angle += angle * Math.PI / 180;
 
     return this;
   },
@@ -67,8 +72,7 @@ Turtle.prototype = {
    * @returns {Turtle}
    */
   left: function (angle) {
-    angle = (this.angle - angle) % 360;
-    this.angle = angle < 0 ? 360 + angle : angle;
+    this.state.angle -= angle * Math.PI / 180;
 
     return this;
   },
@@ -78,7 +82,7 @@ Turtle.prototype = {
    * @returns {Turtle}
    */
   penup: function () {
-    this.active = false;
+    this.state.active = false;
 
     return this;
   },
@@ -88,7 +92,36 @@ Turtle.prototype = {
    * @returns {Turtle}
    */
   pendown: function () {
-    this.active = true;
+    this.state.active = true;
+
+    return this;
+  },
+
+  /**
+   *
+   * @returns {Turtle}
+   */
+  push: function () {
+    var state = {};
+
+    for (var i in this.state) {
+      state[i] = this.state[i];
+    }
+
+    this.stack.push(state);
+
+    return this;
+  },
+
+  /**
+   *
+   * @returns {Turtle}
+   */
+  pop: function () {
+    var state = this.stack.pop();
+    if (state) {
+      this.state = state;
+    }
 
     return this;
   },

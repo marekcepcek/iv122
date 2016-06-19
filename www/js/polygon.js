@@ -73,8 +73,32 @@ Polygon.prototype = {
     return (right > 0 && left > 0) && (right % 2 != 0 || left % 2 != 0);
   },
 
+  getEdges: function () {
+    return this.lines;
+  },
+
+  getEdgesCount: function () {
+    return this.lines.length;
+  },
+
+  getVertices: function () {
+    return this.points;
+  },
+
+  getVerticesCount: function () {
+    return this.points.length;
+  },
+
   getBox: function () {
     return this.box;
+  },
+
+  getWidth: function () {
+    return this.box.right - this.box.left;
+  },
+
+  getHeight: function () {
+    return this.box.bottom - this.box.top;
   },
   
   /**
@@ -98,5 +122,32 @@ Polygon.prototype = {
     }
 
     return this;
+  },
+
+  drawSvg: function () {
+    var image = new VectorImage();
+
+    image.add(this.lines);
+
+    return image.drawSvg();
   }
 };
+
+  /**
+   *
+   * @param {Number} n
+   * @param {Number} size
+   * @returns {Polygon}
+   */
+  Polygon.getRegularPolygon = function (n, size) {
+
+    var polygon = new Polygon();
+
+    var angleStep = 2 * Math.PI / n;
+
+    for (var i = 0; i < n; i++) {
+      polygon.add(new Point(size * Math.sin(i * angleStep), size * Math.cos(i * angleStep)));
+    }
+
+    return polygon;
+  };

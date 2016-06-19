@@ -1,0 +1,93 @@
+{block contentHeader}
+	<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-fraktaly-chaos.pdf" class="btn btn-default pull-right" role="button">Zadanie</a>
+	<a href="#" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
+{/block}
+
+{block content}
+
+<!-- A -->
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading container-fluid">
+			<div class="row">
+				<div class="col-md-4 content__title">
+					Chaos game
+				</div>
+				<div class="col-md-2">Počet hran:
+					<input type="number" value="3" min="3" class="js__section-a__count-input form-control">
+				</div>
+				<div class="col-md-2">Pomer:
+					<input type="number" value="0.5" min="0" max="1" step="0.01" class="js__section-a__ratio-input form-control">
+				</div>
+				<div class="col-md-2">Veľkosť:
+					<input type="number" value="100" min="1" class="js__section-a__size-input form-control">
+				</div>
+				<div class="col-md-2">Počet iterácií:
+					<input type="number" value="5000" min="1" class="js__section-a__iterations-count-input form-control">
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="js__section-a__chaos-output"></div>
+		</div>
+	</div>
+</section>
+
+<!-- B -->
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading container-fluid">
+			<div class="row">
+				<div class="col-md-4 content__title">
+					L-systém
+				</div>
+				<div class="col-md-2">Axiom:
+					<input type="text" value="X" placeholder="napr. F--F--F" class="js__section-b__axiom-input form-control">
+				</div>
+				<div class="col-md-6">Pravidá:
+					<input type="text" value="X => F-[[X]+X]+F[+FX]-X, F => FF" placeholder="napr. F => F+F--F+F" class="js__section-b__rules-input form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-1">Forward:
+					<input type="text" value="F" class="js__section-b__operation-input form-control" data-operation="forward">
+				</div>
+				<div class="col-md-1">Back:
+					<input type="text" value="B" class="js__section-b__operation-input form-control" data-operation="back">
+				</div>
+				<div class="col-md-1">Left:
+					<input type="text" value="-" class="js__section-b__operation-input form-control" data-operation="left">
+				</div>
+				<div class="col-md-1">Right:
+					<input type="text" value="+" class="js__section-b__operation-input form-control" data-operation="right">
+				</div>
+				<div class="col-md-1">Push:
+					<input type="text" value="[" class="js__section-b__operation-input form-control" data-operation="push">
+				</div>
+				<div class="col-md-1">Pop:
+					<input type="text" value="]" class="js__section-b__operation-input form-control" data-operation="pop">
+				</div>
+				<div class="col-md-1">Down:
+					<input type="text" value="D" class="js__section-b__operation-input form-control" data-operation="down">
+				</div>
+				<div class="col-md-1">Up:
+					<input type="text" value="U" class="js__section-b__operation-input form-control" data-operation="up">
+				</div>
+				<div class="col-md-1">Uhol:
+					<input type="number" value="25" min="0" max="360" class="js__section-b__angle-input form-control">
+				</div>
+				<div class="col-md-2">Posun:
+					<input type="number" value="5" min="1" class="js__section-b__move-input form-control">
+				</div>
+				<div class="col-md-1">Kroky:
+					<input type="number" value="5" min="0" class="js__section-b__steps-count-input form-control">
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="js__section-b__l-system-output"></div>
+		</div>
+	</div>
+</section>
+
+{/block}

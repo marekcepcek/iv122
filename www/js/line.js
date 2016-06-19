@@ -79,7 +79,16 @@ Line.prototype = {
    * @returns {Point}
    */
   center: function () {
-    return new Point((this.a.x + this.b.x) / 2, (this.a.y + this.b.y) / 2);
+    return this.getPoint(0.5);
+  },
+
+  /**
+   *
+   * @param {Number} ratio [0,1]
+   * @returns {Point}
+   */
+  getPoint: function (ratio) {
+    return new Point(this.a.x + (this.b.x - this.a.x) * ratio, this.a.y + (this.b.y - this.a.y) * ratio);
   },
 
   getIntersect: function (line) {
@@ -96,12 +105,19 @@ Line.prototype = {
     var c2 = -a2 * line.a.x - b2 * line.a.y;
 
     try {
+      var x, y;
+
       if (a1 == 0) {
-        var x = ((c1 / b1) - (c2 / b2)) / ((a2 / b2) - (a1 / b1));
-        var y = (-a1 * x - c1) / b1;
+        y = -c1 / b1;
+
+        if (b2 == 0) {
+          x = -c2 / a2;
+        } else {
+          x = (-c2 - b2 * y) / a2;
+        }
       } else {
-        var y = ((c1 / a1) - (c2 / a2)) / ((b2 / a2) - (b1 / a1));
-        var x = (-b1 * y - c1) / a1;
+        y = ((c1 / a1) - (c2 / a2)) / ((b2 / a2) - (b1 / a1));
+        x = (-b1 * y - c1) / a1;
       }
 
       var box1 = this.getBox();
@@ -112,7 +128,7 @@ Line.prototype = {
       ) {
         return new Point(x, y);
       }
-    } catch (e) { // delenie nulou - nema riesenie
+    } catch (e) { // nema riesenie
     };
 
     return null;

@@ -21,6 +21,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     public $config;
 
 
+	protected $title = '';
+
+
 	public function beforeRender()
 	{
 		parent::beforeRender();
@@ -28,13 +31,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$this->template->cssFiles = $this->getCssFilenames();
 		$this->template->jsFiles = $this->getJsFilenames();
 
-		$this->template->page = (object)[
-			'description' => $this->getPageDescription(),
-			'keywords' => $this->getPageKeywords(),
-			'title' => $this->getPageTitle()
-		];
-
-		$this->template->navTabs = [
+		$this->template->navTabs = $navTabs = [
 			(object)[
 				'title' => 'Úvod',
 				'presenter' => 'Homepage',
@@ -51,20 +48,92 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 				'action' => 'combinatorics'
 			],
 			(object)[
-				'title' => 'Geometria 1',
-				'presenter' => 'Task',
-				'action' => 'geometry1'
+				'title' => 'Geometria',
+				'subTabs' => [
+					(object)[
+						'title' => 'Želví grafika',
+						'presenter' => 'Task',
+						'action' => 'geometry1'
+					],
+					(object)[
+						'title' => 'Bitmapy',
+						'presenter' => 'Task',
+						'action' => 'geometry2'
+					],
+					(object)[
+						'title' => 'Základné algoritmy',
+						'presenter' => 'Task',
+						'action' => 'geometry3'
+					],
+				]
 			],
 			(object)[
-				'title' => 'Geometria 2',
-				'presenter' => 'Task',
-				'action' => 'geometry2'
+				'title' => 'Fraktály',
+				'subTabs' => [
+					(object)[
+						'title' => 'Chaos',
+						'presenter' => 'Task',
+						'action' => 'chaos'
+					],
+					(object)[
+						'title' => 'Komplexné čísla',
+						'presenter' => 'Task',
+						'action' => 'complex'
+					],
+				]
 			],
 			(object)[
-				'title' => 'Geometria 3',
+				'title' => 'Transformácie',
 				'presenter' => 'Task',
-				'action' => 'geometry3'
+				'action' => 'transform'
 			],
+			(object)[
+				'title' => 'Pravdepodobnosť',
+				'presenter' => 'Task',
+				'action' => 'probability'
+			],
+			(object)[
+				'title' => 'Analýza',
+				'presenter' => 'Task',
+				'action' => 'analysis'
+			],
+			(object)[
+				'title' => 'Grafy',
+				'presenter' => 'Task',
+				'action' => 'graphs'
+			],
+			(object)[
+				'title' => 'Bludisko',
+				'presenter' => 'Task',
+				'action' => 'maze'
+			],
+		];
+
+		foreach ($navTabs as $navTab) {
+			$navTab->active = false;
+
+			if (isset($navTab->subTabs)) {
+
+				foreach ($navTab->subTabs as $subTab) {
+					$subTab->active = false;
+					if ($this->name == $subTab->presenter && $this->action == $subTab->action) {
+						$navTab->active = true;
+						$subTab->active = true;
+						$this->title = $subTab->title;
+					}
+				}
+			} else {
+				if ($this->name == $navTab->presenter && $this->action == $navTab->action) {
+					$navTab->active = true;
+					$this->title = $navTab->title;
+				}
+			}
+		}
+
+		$this->template->page = (object)[
+			'description' => $this->getPageDescription(),
+			'keywords' => $this->getPageKeywords(),
+			'title' => $this->getPageTitle()
 		];
 	}
 
@@ -124,7 +193,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 	public function getPageTitle()
 	{
-		return 'Title';
+		return 'IV122 | '.$this->title;
 	}
 
 }
