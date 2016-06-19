@@ -1,8 +1,8 @@
-$(function () {
+
 
   /* A1 */
   (function () {
-    var canvas = document.getElementById('canvasA1');
+    var canvas = document.querySelector('.js__section-a__color-output');
     var context = canvas.getContext('2d');
 
     var width = canvas.width;
@@ -26,37 +26,35 @@ $(function () {
 
   /* A2 */
   (function () {
-    var canvas = document.getElementById('canvasA2');
-    var context = canvas.getContext('2d');
+    var starOutput = document.querySelector('.js__section-a__star-output');
+    var splitCountInput = document.querySelector('.js__section-a__split-count-input');
 
-    var sectionWidth = canvas.width / 2;
-    var sectionHeight = canvas.height / 2;
+    var work = function () {
+      var image = new VectorImage();
+      var splitCount = splitCountInput.value;
 
-    var drawSection = function (width, height, splitCount, flipX, flipY) {
+      var drawSection = function (width, height, splitCount, flipX, flipY) {
 
-      var stepX = width / splitCount;
-      var stepY = height / splitCount;
+        var stepX = width / splitCount;
+        var stepY = height / splitCount;
 
-      for (var i = 0; i <= splitCount; i++) {
-        (new Line(new Point(width + flipX * i * stepX, height), new Point(width, height + flipY * (height - i * stepY)))).draw(context);
-      }
+        for (var i = 0; i <= splitCount; i++) {
+          image.add(new Line(new Point(width + flipX * i * stepX, height), new Point(width, height + flipY * (height - i * stepY))));
+        }
+
+      };
+
+      drawSection(128, 128, splitCount, 1, 1);
+      drawSection(128, 128, splitCount, 1, -1);
+      drawSection(128, 128, splitCount, -1, 1);
+      drawSection(128, 128, splitCount, -1, -1);
+
+      starOutput.innerHTML = image.drawSvg();
     };
 
-    var draw = function () {
-      var splitCount = $('.js-split-count-input').val();
+    splitCountInput.addEventListener('change', work);
 
-      drawSection(sectionWidth, sectionHeight, splitCount, 1, 1);
-      drawSection(sectionWidth, sectionHeight, splitCount, 1, -1);
-      drawSection(sectionWidth, sectionHeight, splitCount, -1, 1);
-      drawSection(sectionWidth, sectionHeight, splitCount, -1, -1);
-    };
-
-    $('.js-split-count-input').on('change', function () {
-      context.clearRect(0, 0, canvas.width, canvas.height)
-      draw();
-    });
-
-    draw();
+    work();
   })();
 
   /* B */
@@ -82,6 +80,7 @@ $(function () {
 
       var maxValue = Math.max.apply(null, stack);
 
+      context.clearRect(0, 0, canvas.width, canvas.height);
       stack.forEach(function (el, index) {
         context.beginPath();
         context.arc(canvas.width / number * index, canvas.height - canvas.height / maxValue * el, 2, 0, 2 * Math.PI, false);
@@ -91,52 +90,44 @@ $(function () {
 
     /* B1 */
     (function () {
-      var canvas = document.getElementById('canvasB1');
+      var canvas = document.querySelector('.js__section-b__steps-count-output');
       var context = canvas.getContext('2d');
 
-      var number = 6000;
+      var maxNumberInput = document.querySelector('.js__section-b__max-number-input');
+
       var draw = function () {
-        drawCollatz(number, function (collatz) {
+        drawCollatz(maxNumberInput.value, function (collatz) {
           return collatz.length;
         }, context, canvas);
       };
 
-      $('.js-collatz-max-number-input').on('change', function () {
-        number = $(this).val();
-        context.clearRect(0, 0, canvas.width, canvas.height)
-        draw();
-      });
+      maxNumberInput.addEventListener('change', draw);
 
       draw();
     })();
 
     /* B2 */
     (function () {
-      var canvas = document.getElementById('canvasB2');
+      var canvas = document.querySelector('.js__section-b__max-output');
       var context = canvas.getContext('2d');
 
-      var number = 6000;
+      var maxNumberInput = document.querySelector('.js__section-b__max-number-input');
+
       var draw = function () {
-        drawCollatz(number, function (collatz) {
+        drawCollatz(maxNumberInput.value, function (collatz) {
           return Math.max.apply(null, collatz);
         }, context, canvas);
       };
 
-      $('.js-collatz-max-number-input').on('change', function () {
-        number = $(this).val();
-        context.clearRect(0, 0, canvas.width, canvas.height)
-        draw();
-      });
+      maxNumberInput.addEventListener('change', draw);
 
       draw();
     })();
-
-
   })();
 
   /* C */
   (function () {
-    var canvas = document.getElementById('canvasC');
+    var canvas = document.querySelector('.js__section-c__spiral-output');
     var context = canvas.getContext('2d');
 
     var image = new BitmapImage(canvas.width, canvas.height);
@@ -213,7 +204,7 @@ $(function () {
   })();
 
   (function () {
-    var canvas = document.getElementById('canvasD');
+    var canvas = document.querySelector('.js__section-c__nsd-output');
     var context = canvas.getContext('2d');
 
     var width = canvas.width;
@@ -230,10 +221,7 @@ $(function () {
       return nsdMod(b, a % b);
     };
 
-    var draw = function () {
-      
-      var number = parseInt($('.js-nsd-number-input').val());
-
+    var draw = function (number) {
       for (var x = 1; x <= number; x++) {
         for (var y = 1; y <= number; y++) {
           var nsd = nsdMod(x, y);
@@ -244,16 +232,9 @@ $(function () {
       image.draw(context, 0, 0);
     };
 
-    $('.js-nsd-number-input').on('change', function () {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      draw();
-    });
-
-    draw();
+    draw(256);
 
   })();
-
-});
 
 function isPrimeNumber(n) {
   if (n <= 1) {

@@ -1,15 +1,17 @@
 body {
-  padding-top: 70px;
+  padding-top: 65px;
   padding-bottom: 30px;
 }
 
-.center-section {
-	max-width: 960px;
-	position: relative;
-	margin: 0px auto;
+.content__header {
+	padding-bottom: 15px;
 }
 
-canvas, svg {
+.content__header a {
+	margin-left: 10px;
+}
+
+canvas, svg, iframe {
 	position: relative;
 	margin: 25px auto;
 	display: block;

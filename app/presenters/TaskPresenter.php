@@ -10,18 +10,13 @@ class TaskPresenter extends BasePresenter
 			'point',
 			'vector',
 			'line',
+			'circle',
+			'polygon',
 			'bitmapImage',
 			'vectorImage',
 			'turtle',
 			$this->action,
 		];
-
-//		switch ($this->action) {
-//			case 'numbers':
-//				$jsFilenames = [
-//
-//				];
-//		}
 
 		return array_merge(parent::getJsFilenames(), $jsFilenames);
 	}

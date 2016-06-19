@@ -1,23 +1,32 @@
+{block contentHeader}
+	<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-rozcvicka.pdf" class="btn btn-default pull-right" role="button">Zadanie</a>
+	<a href="/js/numbers.js" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
+{/block}
+
+
 {block content}
-<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-rozcvicka.pdf">Zadanie</a><br>
-<a href="/www/js/numbers.js">Zdrojový kód</a>
 
 <!-- A -->
 <section>
-	<div class="page-header">
-		<h2>A</h2>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<h3>1</h3>
-			<canvas id="canvasA1" width="256" height="256"></canvas>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-md-9 content__title">
+					Bit map vs. vektorová grafika
+				</div>
+				<div class="col-md-3">Hustota:
+					<input type="number" min="1" max="64" value="12" class="js__section-a__split-count-input form-control">
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6">
-			<h3>2</h3>
-			<canvas id="canvasA2" width="256" height="256"></canvas>
-			<div class="form-group">
-				<label>Hustota:</label>
-				<input type="number" min="1" max="64" value="16" class="js-split-count-input form-control">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<canvas class="js__section-a__color-output" width="256" height="256"></canvas>
+				</div>
+				<div class="col-md-6">
+					<div class="js__section-a__star-output"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -25,55 +34,61 @@
 
 <!-- B -->
 <section>
-	<div class="page-header">
-		<h2>B</h2>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<h3>1</h3>
-			<canvas id="canvasB1" width="256" height="256"></canvas>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-md-9 content__title">
+					Collatzova postupnosť
+				</div>
+				<div class="col-md-3">Číslo:
+					<input type="number" min="2" max="10000" value="6000" class="js__section-b__max-number-input form-control">
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6">
-			<h3>2</h3>
-			<canvas id="canvasB2" width="256" height="256"></canvas>
-			<input type="number" min="2" max="10000" value="6000" class="js-collatz-max-number-input form-control">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<canvas class="js__section-b__steps-count-output" width="256" height="256"></canvas>
+				</div>
+				<div class="col-md-6">
+					<canvas class="js__section-b__max-output" width="256" height="256"></canvas>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
 
 <!-- C -->
 <section>
-	<div class="page-header">
-		<h2>C</h2>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<canvas id="canvasC" width="256" height="256"></canvas>
-			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active js-variant-button" data-variant="prime">Prvočísla</button>
-				<button type="button" class="btn btn-default js-variant-button" data-variant="mod-3">Mod 3</button>
-				<button type="button" class="btn btn-default js-variant-button" data-variant="mod-7">Mod 7</button>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-md-9 content__title">
+					Ulamova Špirála
+				</div>
+				<div class="col-md-3">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-default active js-variant-button" data-variant="prime">Prvočísla</button>
+						<button type="button" class="btn btn-default js-variant-button" data-variant="mod-3">Mod 3</button>
+						<button type="button" class="btn btn-default js-variant-button" data-variant="mod-7">Mod 7</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<!-- @TODO text -->
+		<div class="panel-body">
+			<canvas class="js__section-c__spiral-output" width="256" height="256"></canvas>
 		</div>
 	</div>
 </section>
 
 <!-- D -->
 <section>
-	<div class="page-header">
-		<h2>D</h2>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<canvas id="canvasD" width="256" height="256"></canvas>
-			<input type="number" min="1" max="1024" value="256" class="js-nsd-number-input form-control">
-		</div>
-		<div class="col-md-6">
-			<!-- @TODO text -->
+	<div class="panel panel-default">
+		<div class="panel-heading">NSD</div>
+		<div class="panel-body">
+			<canvas class="js__section-c__nsd-output" width="256" height="256"></canvas>
 		</div>
 	</div>
 </section>
+
 {/block}

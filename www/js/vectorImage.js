@@ -13,7 +13,17 @@ var VectorImage = function () {
 
 VectorImage.prototype = {
   
-  add: function (object) {
+  add: function (objects) {
+    if (objects instanceof Array) {
+      for (var i in objects) {
+        this.addObject(objects[i]);
+      }
+    } else {
+      this.addObject(objects);
+    }
+  },
+
+  addObject: function (object) {
     this.objects.push(object);
 
     var box = object.getBox();

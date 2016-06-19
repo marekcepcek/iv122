@@ -55,11 +55,19 @@
   work();
 })();
 
-/* A */
+/* B */
 (function () {
 
   var relativeOutput = document.querySelector('.js__section-b__relative-output');
   var absoluteOutput = document.querySelector('.js__section-b__absolute-output');
+
+  var bOutput = document.querySelector('.js__section-b__b-output');
+  var cOutput = document.querySelector('.js__section-b__c-output');
+  var dOutput = document.querySelector('.js__section-b__d-output');
+  var eOutput = document.querySelector('.js__section-b__e-output');
+  
+  var countInput = document.querySelector('.js__section-b__count-input');
+  var sizeInput = document.querySelector('.js__section-b__size-input');
 
   /**
    * @returns {Turtle}
@@ -114,10 +122,238 @@
     return pentagram;
   };
 
+  var getSpiral = function (n, size) {
+    var spiral = new Turtle();
+
+    var ratio = 0.1;
+
+    for (var i = 0; i < n; i++) {
+      for (var j = 0; j < 4; j++) {
+        spiral.forward(size);
+        spiral.right(90);
+      }
+
+      var a = size * ratio;
+
+      size = Math.sqrt(a * a + (size - a) * (size - a));
+      spiral.forward(a);
+      spiral.right(Math.asin(a / size) * 180 / Math.PI);
+    }
+
+    return spiral;
+  };
+
+  var getGrid = function (n, size) {
+    var grid = new VectorImage();
+
+    size /= 2;
+    
+    var x, y;
+    var step = size / n;
+
+    for (var i = 0; i < n; i++) {
+      x = step * i;
+      y = Math.sqrt(size * size - x * x);
+
+      grid.add(new Line(new Point(x, y), new Point(x, -y)));
+      grid.add(new Line(new Point(-x, y), new Point(-x, -y)));
+
+      grid.add(new Line(new Point(y, x), new Point(-y, x)));
+      grid.add(new Line(new Point(y, -x), new Point(-y, -x)));
+    }
+
+    return grid;
+  };
+
+  var getTriangles = function (n, size) {
+    var triangles = new Turtle();
+    
+    var step = size / 2 / Math.cos(Math.PI / 6) / n;
+
+    for (var i = 0; i < n; i++) {
+      for (var j = 0; j < 3; j++) {
+        triangles.forward(size - size * i / n);
+        triangles.right(120);
+      }
+
+      triangles.penup().right(30).forward(step).left(30).pendown();
+    }
+
+    return triangles;
+  };
+
+  var getDiamonds = function (n, size) {
+    size /= n;
+
+    var diamonds = new Turtle();
+    var angle = 180 - (1 - 2 / n) * 180;
+
+    for (var i = 0; i < n; i++) {
+      for (var j = 0; j < n; j++) {
+        diamonds.forward(size);
+        diamonds.right(angle);
+      }
+      diamonds.right(angle);
+    }
+
+    return diamonds;
+  };
+
   var work = function () {
+    var n = countInput.value;
+    var size = sizeInput.value;
+
     relativeOutput.innerHTML = relativePentagram().drawSvg();
     absoluteOutput.innerHTML = absolutePentagram().drawSvg();
+
+    bOutput.innerHTML = getSpiral(n, size).drawSvg();
+    cOutput.innerHTML = getGrid(n, size).drawSvg();
+    dOutput.innerHTML = getTriangles(n, size).drawSvg();
+    eOutput.innerHTML = getDiamonds(n, size).drawSvg();
   };
+
+  countInput.addEventListener('change', work);
+  sizeInput.addEventListener('change', work);
+  
+  work();
+})();
+
+/* A */
+(function () {
+
+  var countInput = document.querySelector('.js__section-c__count-input');
+  var sizeInput = document.querySelector('.js__section-c__size-input');
+
+  var kochOutput = document.querySelector('.js__section-c__koch-output');
+  var treeOutput = document.querySelector('.js__section-c__tree-output');
+  var triangleOutput = document.querySelector('.js__section-c__triangle-output');
+  var pentaflakeOutput = document.querySelector('.js__section-c__pentaflake-output');
+
+  var scaleFactor = function (n) {
+    var sum = 0;
+    for (var i = Math.floor(n/4); i >= 1; i--) {
+      sum += Math.cos(2 * Math.PI * i / n);
+    }
+
+    return 1 / (2 * (1 + sum));
+  };
+
+  /**
+   *
+   * @param {Number} n
+   * @param {Number} size
+   * @returns {Turtle}
+   */
+  var nflake = function (n, deep, size) {
+    var flake = new Turtle();
+
+    var scale = scaleFactor(n);
+    var angle = 180 - (1 - 2 / n) * 180;
+
+    var step = function (deep, size) {
+      if (deep <= 0) {
+        for (var i = 0; i < n; i++) {
+          flake.forward(size)
+            .left(angle);
+        }
+      } else {
+        for (var i = 0; i < n; i++) {
+          step(deep - 1, size * scale);
+          flake.penup()
+            .forward(size)
+            .left(angle)
+            .pendown();
+        }
+      }
+    };
+
+    step(deep, size);
+
+    return flake;
+  };
+
+  /**
+   *
+   * @param {Number} n
+   * @param {Number} size
+   * @returns {Turtle}
+   */
+  var kochFractal = function (n, size) {
+    var turtle = new Turtle();
+
+    var step = function (n, size) {
+      size /= 3;
+      if (n <= 1) {
+        turtle.forward(size)
+          .left(60)
+          .forward(size)
+          .right(120)
+          .forward(size)
+          .left(60)
+          .forward(size);
+      } else {
+        step(n - 1, size);
+        turtle.left(60);
+        step(n - 1, size);
+        turtle.right(120);
+        step(n - 1, size);
+        turtle.left(60);
+        step(n - 1, size);
+      }
+    };
+
+    for (var i = 0; i < 3; i++) {
+      step(n, size);
+      turtle.right(120);
+    }
+
+    return turtle;
+  };
+
+   /**
+   *
+   * @param {Number} n
+   * @param {Number} size
+   * @returns {Turtle}
+   */
+  var treeFractal = function (n, size) {
+    var turtle = new Turtle();
+    turtle.left(90);
+    var step = function (n, size) {
+      size *= 0.6;
+      turtle.forward(size);
+
+      if (n >= 1) {
+        turtle.left(45);
+        step(n - 1, size);
+        turtle.right(90);
+        step(n - 1, size);
+        turtle.left(45);
+      }
+
+      turtle.penup()
+        .back(size)
+        .pendown();
+    };
+
+    step(n, size);
+
+    return turtle;
+  };
+
+
+  var work = function () {
+    var count = countInput.value;
+    var size = sizeInput.value;
+    
+    kochOutput.innerHTML = kochFractal(count, size).drawSvg();
+    treeOutput.innerHTML = treeFractal(count, size).drawSvg();
+    triangleOutput.innerHTML = nflake(3, count, size).drawSvg();
+    pentaflakeOutput.innerHTML = nflake(5, count, size).drawSvg();
+  };
+
+  countInput.addEventListener('change', work);
+  sizeInput.addEventListener('change', work);
 
   work();
 })();

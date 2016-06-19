@@ -15,7 +15,7 @@ Vector.prototype = {
   /**
    *
    * @param {Vector} vector
-   * @returns {PNumber}
+   * @returns {Number}
    */
   dotProduct: function (vector) {
     return this.x * vector.x + this.y * vector.y;

@@ -76,7 +76,7 @@
 /* B */
 (function () {
 
-  var canvas = document.querySelector('#canvasB');
+  var canvas = document.querySelector('.js__section-b__pascal-output');
   var context = canvas.getContext('2d');
 
   var nInput = document.querySelector('.js__section-b__n-input');
@@ -188,13 +188,14 @@
   };
 
   var work = function () {
-    window.setTimeout(function () {
-      glOutput.innerHTML = format(GL());
-      aOutput.innerHTML = format(A());
-      mcOutput.innerHTML = format(MC());
-    }, 1000);
+    glOutput.innerHTML = format(GL());
+    aOutput.innerHTML = format(A());
+    mcOutput.innerHTML = format(MC());
   };
 
-  work();
+  document.querySelector('.js__section-d__start-button').addEventListener('click', function (event) {
+    event.preventDefault();
+    work();
+  });
 })();
 

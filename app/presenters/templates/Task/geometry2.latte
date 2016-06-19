@@ -1,3 +1,87 @@
+{block contentHeader}
+	<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-bitmap.pdf" class="btn btn-default pull-right" role="button">Zadanie</a>
+	<a href="#" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
+{/block}
+
 {block content}
-<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-bitmap.pdf">Zadanie</a>
+
+<!-- A -->
+<section>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Kruh</div>
+				<div class="panel-body">
+					<canvas class="js__section-a__circle-output" width="128" height="128"></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Kruh - vyplnený</div>
+				<div class="panel-body">
+					<canvas class="js__section-a__circle-filled-output" width="128" height="128"></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Špirála</div>
+				<div class="panel-body">
+					<canvas class="js__section-a__spiral-output" width="128" height="128"></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Trojuholník</div>
+				<div class="panel-body">
+					<canvas class="js__section-a__triangle-output" width="128" height="128"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- B -->
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading">Polygon</div>
+		<div class="panel-body">
+			<canvas class="js__section-b__polygon-output" width="256" height="256"></canvas>
+		</div>
+	</div>
+</section>
+
+<!-- C -->
+<section>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Šachovnica</div>
+				<div class="panel-body">
+					<canvas class="js__section-c__chess-output" width="256" height="256"></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Vlny</div>
+				<div class="panel-body">
+					<canvas class="js__section-c__waves-output" width="256" height="256"></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Farby</div>
+				<div class="panel-body">
+					<canvas class="js__section-c__colors-output" width="256" height="256"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
 {/block}

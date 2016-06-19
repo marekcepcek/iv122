@@ -46,22 +46,22 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 				'action' => 'numbers'
 			],
 			(object)[
-				'title' => 'Kombinatorika',
+				'title' => 'Kombinátorika',
 				'presenter' => 'Task',
 				'action' => 'combinatorics'
 			],
 			(object)[
-				'title' => 'Geometrie 1',
+				'title' => 'Geometria 1',
 				'presenter' => 'Task',
 				'action' => 'geometry1'
 			],
 			(object)[
-				'title' => 'Geometrie 2',
+				'title' => 'Geometria 2',
 				'presenter' => 'Task',
 				'action' => 'geometry2'
 			],
 			(object)[
-				'title' => 'Geometrie 3',
+				'title' => 'Geometria 3',
 				'presenter' => 'Task',
 				'action' => 'geometry3'
 			],

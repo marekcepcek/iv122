@@ -1,33 +1,34 @@
+{block contentHeader}
+	<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-geometrie-zelva.pdf" class="btn btn-default pull-right" role="button">Zadanie</a>
+	<a href="#" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
+{/block}
+
 {block content}
-<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-geometrie-zelva.pdf">Zadanie</a>
 
 <!-- A -->
 <section>
-	<div class="page-header">
-		<h2>A, Želvý grafika</h2>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<label>Počet hran:</label>
-			<input type="number" value="12" class="js__section-a__count-input form-control">
-		</div>
-		<div class="col-md-6">
-			<label>Veľkosť:</label>
-			<input type="number" value="64" min="1" class="js__section-a__size-input form-control">
-		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-md-6">
-			<div class="panel panel-default">
-			  <div class="panel-heading">Pravidelný n-uholník</div>
-			  <div class="panel-body js__section-a__polygon-output"></div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-md-6 content__title">
+					Želvý grafika - pravidelný n-uholník a hviezda
+				</div>
+				<div class="col-md-3">Počet hran:
+					<input type="number" value="12" min="1" class="js__section-a__count-input form-control">
+				</div>
+				<div class="col-md-3">Veľkosť:
+					<input type="number" value="64" min="1" class="js__section-a__size-input form-control">
+				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<div class="panel panel-default">
-			  <div class="panel-heading">Hviezda</div>
-			  <div class="panel-body js__section-a__star-output"></div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="js__section-a__polygon-output"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="js__section-a__star-output"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -35,24 +36,99 @@
 
 <!-- B -->
 <section>
-	<div class="page-header">
-		<h2>B, Relatívne vs. absolútne vykreslovanie</h2>
-	</div>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="panel panel-default">
-			  <div class="panel-heading">Relatívne</div>
-			  <div class="panel-body js__section-b__relative-output"></div>
+				<div class="panel-heading">Relatívne</div>
+				<div class="panel-body">
+					<div class="js__section-b__relative-output"></div>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
-			  <div class="panel-heading">Absolútne</div>
-			  <div class="panel-body js__section-b__absolute-output"></div>
+				<div class="panel-heading">Absolútne</div>
+				<div class="panel-body">
+					<div class="js__section-b__absolute-output"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<section>
+
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-md-6 content__title">
+					Relatívne vs. absolútne vykreslovanie
+				</div>
+				<div class="col-md-3">Počet krokov:
+					<input type="number" value="12" min="1" class="js__section-b__count-input form-control">
+				</div>
+				<div class="col-md-3">Veľkosť:
+					<input type="number" value="256" min="1" class="js__section-b__size-input form-control">
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="js__section-b__b-output"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="js__section-b__c-output"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="js__section-b__d-output"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="js__section-b__e-output"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-md-6 content__title">
+					Fraktály
+				</div>
+				<div class="col-md-3">Počet krokov:
+					<input type="number" value="4" min="1" class="js__section-c__count-input form-control">
+				</div>
+				<div class="col-md-3">Veľkosť:
+					<input type="number" value="256" min="1" class="js__section-c__size-input form-control">
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="js__section-c__koch-output"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="js__section-c__triangle-output"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="js__section-c__tree-output"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="js__section-c__pentaflake-output"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 
 
 {/block}

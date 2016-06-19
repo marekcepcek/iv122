@@ -13,8 +13,8 @@ var Triangle = function (a, b, c) {
 };
 
 Triangle.prototype = {
-
-   /**
+  
+  /**
    *
    * @param {CanvasRenderingContext2D} context
    * @returns {undefined}

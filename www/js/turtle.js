@@ -15,26 +15,26 @@ Turtle.prototype = {
   /**
    *
    * @param {Number} step
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   forward: function (step) {
-    this.move(step, 1);
+    return this.move(step, 1);
   },
 
   /**
    *
    * @param {Number} step
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   back: function (step) {
-    this.move(step, -1);
+    return this.move(step, -1);
   },
 
   /**
    *
    * @param {Number} step
    * @param {Number} direction 1 | -1
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   move: function (step, direction) {
     var x = this.x + direction * step * Math.cos(this.angle * Math.PI / 180);
@@ -46,41 +46,51 @@ Turtle.prototype = {
 
     this.x = x;
     this.y = y;
+
+    return this;
   },
 
   /**
    *
    * @param {Number} angle
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   right: function (angle) {
     this.angle = (this.angle + angle) % 360;
+
+    return this;
   },
 
   /**
    *
    * @param {Number} angle
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   left: function (angle) {
     angle = (this.angle - angle) % 360;
     this.angle = angle < 0 ? 360 + angle : angle;
+
+    return this;
   },
 
   /**
    *
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   penup: function () {
     this.active = false;
+
+    return this;
   },
 
   /**
    *
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   pendown: function () {
     this.active = true;
+
+    return this;
   },
 
   /**
@@ -92,6 +102,8 @@ Turtle.prototype = {
     for (var i = 0; i < this.lines.length; i++) {
       this.lines[i].draw(context);
     }
+
+    return this;
   },
 
   /**
