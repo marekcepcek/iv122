@@ -10,10 +10,16 @@ var Polygon = function () {
   this.endPoint = null;
 
   this.box = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  };
+
+  this.style = {
+    fill: 'none',
+    stroke: 'black',
+    'stroke-width': 1
   };
 };
 
@@ -31,17 +37,11 @@ Polygon.prototype = {
       this.lines.pop();
       this.lines.push(new Line(this.endPoint, point));
       this.lines.push(new Line(point, this.points[0]));
-
-      this.box.top = Math.max(this.box.top, point.y);
-      this.box.right = Math.max(this.box.right, point.x);
-      this.box.bottom = Math.min(this.box.bottom, point.y);
-      this.box.left = Math.min(this.box.left, point.x);
-    } else {
-      this.box.top = this.box.bottom = point.y;
-      this.box.right = this.box.left = point.x;
     }
 
     this.endPoint = point;
+
+    this.recountBox();
 
     return this;
   },
@@ -100,6 +100,64 @@ Polygon.prototype = {
   getHeight: function () {
     return this.box.bottom - this.box.top;
   },
+
+  recountBox: function () {
+    this.box = {
+      top: null,
+      right: null,
+      bottom: null,
+      left: null
+    };
+
+    for (var i in this.lines) {
+      this.resizeBox(this.lines[i].getBox());
+    }
+
+    return this;
+  },
+
+  /**
+   *
+   * @param {Object} box
+   * @returns {Polygon}
+   */
+  resizeBox: function (box) {
+    this.box.top = this.box.top !== null ? Math.max(this.box.top, box.top) : box.top;
+    this.box.right = this.box.right !== null ? Math.max(this.box.right, box.right) : box.right;
+    this.box.bottom = this.box.bottom !== null ? Math.min(this.box.bottom, box.bottom) : box.bottom;
+    this.box.left = this.box.left !== null ? Math.min(this.box.left, box.left) : box.left;
+
+    return this;
+  },
+
+  /**
+   *
+   * @param {Matrix} transformation
+   * @returns {Polygon}
+   */
+  transform: function (transformation) {
+    for (var i in this.points) {
+      this.points[i].transform(transformation);
+    }
+
+    this.recountBox();
+
+    return this;
+  },
+
+  /**
+   *
+   * @returns {Polygon}
+   */
+  clone: function () {
+    var polygon = new Polygon();
+
+    for (var i in this.points) {
+      polygon.add(this.points[i].clone());
+    }
+
+    return polygon;
+  },
   
   /**
    *
@@ -124,30 +182,46 @@ Polygon.prototype = {
     return this;
   },
 
+  /**
+   *
+   * @returns {String}
+   */
   drawSvg: function () {
-    var image = new VectorImage();
-
-    image.add(this.lines);
-
-    return image.drawSvg();
-  }
-};
+    return '<polygon points="' + this.points.map(function (point) {
+      return point.x + ',' + point.y;
+    }).join(' ') + '" style="' + this.getStyle() + '" />';
+  },
 
   /**
    *
-   * @param {Number} n
-   * @param {Number} size
-   * @returns {Polygon}
+   * @returns {String}
    */
-  Polygon.getRegularPolygon = function (n, size) {
+  getStyle: function () {
+    var style = '';
 
-    var polygon = new Polygon();
-
-    var angleStep = 2 * Math.PI / n;
-
-    for (var i = 0; i < n; i++) {
-      polygon.add(new Point(size * Math.sin(i * angleStep), size * Math.cos(i * angleStep)));
+    for (var name in this.style) {
+      style += name + ':' + this.style[name] + ';';
     }
 
-    return polygon;
-  };
+    return style;
+  }
+};
+
+/**
+ *
+ * @param {Number} n
+ * @param {Number} size
+ * @returns {Polygon}
+ */
+Polygon.getRegularPolygon = function (n, size) {
+
+  var polygon = new Polygon();
+
+  var angleStep = 2 * Math.PI / n;
+
+  for (var i = 0; i < n; i++) {
+    polygon.add(new Point(size * Math.sin(i * angleStep), size * Math.cos(i * angleStep)));
+  }
+
+  return polygon;
+};

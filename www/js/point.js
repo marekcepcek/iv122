@@ -71,6 +71,28 @@ Point.prototype = {
    */
   distanceSq: function (point) {
     return (this.x - point.x) * (this.x - point.x) + (this.y - point.y) * (this.y - point.y);
+  },
+
+  /**
+   *
+   * @param {Matrix} transformation
+   * @returns {Point}
+   */
+  transform: function (transformation) {
+    var result = transformation.product(new Matrix([[this.x], [this.y], [1]]));
+
+    this.x = result.get(0, 0);
+    this.y = result.get(1, 0);
+
+    return this;
+  },
+
+  /**
+   *
+   * @returns {Point}
+   */
+  clone: function () {
+    return new Point(this.x, this.y);
   }
 };
 

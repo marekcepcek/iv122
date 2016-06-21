@@ -10,12 +10,8 @@ var Line = function (a, b) {
   this.b = b;
 
   this.style = {
-    color: {
-      r: 0,
-      g: 0,
-      b: 0
-    },
-    width: 1
+    'stroke': 'black',
+    'stroke-width': 1
   };
 };
 
@@ -36,7 +32,21 @@ Line.prototype = {
   },
 
   drawSvg: function () {
-    return '<line x1="' + this.a.x + '" y1="' + this.a.y + '" x2="' + this.b.x + '" y2="' + this.b.y + '" style="stroke:rgb(' + this.style.color.r + ',' + this.style.color.g + ',' + this.style.color.b + ');stroke-width:' + this.style.width + '" />';
+    return '<line x1="' + this.a.x + '" y1="' + this.a.y + '" x2="' + this.b.x + '" y2="' + this.b.y + '" style="' + this.getStyle() + '" />';
+  },
+
+  /**
+   *
+   * @returns {String}
+   */
+  getStyle: function () {
+    var style = '';
+
+    for (var name in this.style) {
+      style += name + ':' + this.style[name] + ';';
+    }
+
+    return style;
   },
   
   getBox: function () {
@@ -143,5 +153,25 @@ Line.prototype = {
     var circle = Circle.createCircle(this.a, this.b, point);
 
     return circle.radius * (this.left(circle.center) ? 1 : -1);
+  },
+
+  /**
+   *
+   * @param {Matrix} transformation
+   * @returns {Line}
+   */
+  transform: function (transformation) {
+    this.a.transform(transformation);
+    this.b.transform(transformation);
+
+    return this;
+  },
+
+  /**
+   *
+   * @returns {Line}
+   */
+  clone: function () {
+    return new Line(this.a.clone(), this.b.clone());
   }
 };

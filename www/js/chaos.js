@@ -56,18 +56,6 @@
   var RULES_SEPARATOR = ',';
   var RULE_OPERATOR = '=>';
 
-  var OPERATION_FORWARD = 'forward';
-  var OPERATION_BACK = 'back';
-
-  var OPERATION_LEFT = 'left';
-  var OPERATION_RIGHT = 'right';
-
-  var OPERATION_PUSH = 'push';
-  var OPERATION_POP = 'pop';
-
-  var OPERATION_PEN_UP = 'up';
-  var OPERATION_PEN_DOWN = 'down';
-
   var axiomInput = document.querySelector('.js__section-b__axiom-input');
   var rulesInput = document.querySelector('.js__section-b__rules-input');
   var angleInput = document.querySelector('.js__section-b__angle-input');
@@ -77,57 +65,6 @@
   var operationInputs = document.querySelectorAll('.js__section-b__operation-input');
 
   var lSystemOutput = document.querySelector('.js__section-b__l-system-output');
-
-  var getLSystem = function (axiom, rules, operationsMap, angle, move, stepsCount) {
-    var turtle = new Turtle();
-
-    var letter, newAxiom;
-    for (var i = 0; i < stepsCount; i++) {
-      newAxiom = '';
-      axiomLoop: for (var j = 0; j < axiom.length; j++) {
-        var letter = axiom[j];
-        for (var key in rules) {
-          if (letter == key) {
-            newAxiom += rules[key];
-            continue axiomLoop;
-          }
-        }
-        newAxiom += letter;
-      }
-      axiom = newAxiom;
-    }
-
-    for (var i = 0; i < axiom.length; i++) {
-      switch (operationsMap[axiom[i]]) {
-        case OPERATION_FORWARD:
-          turtle.forward(move);
-          break;
-        case OPERATION_BACK:
-          turtle.back(move);
-          break;
-        case OPERATION_LEFT:
-          turtle.left(angle);
-          break;
-        case OPERATION_RIGHT:
-          turtle.right(angle);
-          break;
-        case OPERATION_PUSH:
-          turtle.push();
-          break;
-        case OPERATION_POP:
-          turtle.pop();
-          break;
-        case OPERATION_PEN_UP:
-          turtle.penup();
-          break;
-        case OPERATION_PEN_DOWN:
-          turtle.pendown();
-          break;
-      }
-    }
-
-    return turtle;
-  };
 
   var work = function () {
 
@@ -158,7 +95,11 @@
     var move = parseFloat(moveInput.value);
     var stepsCount = parseInt(stepsCountInput.value);
 
-    lSystemOutput.innerHTML = getLSystem(axiom, rules, operationsMap, angle, move, stepsCount).drawSvg();
+    var image = new VectorImage();
+
+    image.add(LSystem.create(axiom, rules, operationsMap, angle, move, stepsCount));
+
+    lSystemOutput.innerHTML = image.drawSvg();
   };
 
   axiomInput.addEventListener('change', work);

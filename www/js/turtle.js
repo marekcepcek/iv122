@@ -3,7 +3,8 @@
  * @returns {Turtle}
  */
 var Turtle = function () {
-  this.lines = new VectorImage();
+
+  this.lines = [];
 
   this.state = {
     x: 0,
@@ -13,6 +14,13 @@ var Turtle = function () {
   };
 
   this.stack = [];
+
+  this.box = {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  };
 };
 
 Turtle.prototype = {
@@ -46,11 +54,24 @@ Turtle.prototype = {
     var y = this.state.y + direction * step * Math.sin(this.state.angle);
 
     if (this.state.active) {
-      this.lines.add(new Line(new Point(this.state.x, this.state.y), new Point(x, y)));
+      this.addLine(new Line(new Point(this.state.x, this.state.y), new Point(x, y)));
     }
 
     this.state.x = x;
     this.state.y = y;
+
+    return this;
+  },
+
+  /**
+   *
+   * @param {Line} line
+   * @returns {Turtle}
+   */
+  addLine: function (line) {
+    this.lines.push(line);
+
+    this.resizeBox(line.getBox());
 
     return this;
   },
@@ -128,8 +149,95 @@ Turtle.prototype = {
 
   /**
    *
+   * @returns {Object}
+   */
+  getBox: function () {
+    return this.box;
+  },
+
+  /**
+   *
+   * @returns {Number}
+   */
+  getWidth: function () {
+    return this.box.right - this.box.left;
+  },
+
+  /**
+   *
+   * @returns {Number}
+   */
+  getHeight: function () {
+    return this.box.bottom - this.box.top;
+  },
+
+  /**
+   *
+   * @param {Matrix} transformation
+   * @returns {Turtle}
+   */
+  transform: function (transformation) {
+    for (var i in this.lines) {
+      this.lines[i].transform(transformation);
+    }
+
+    this.recountBox();
+
+    return this;
+  },
+
+  /**
+   *
+   * @returns {Turtle}
+   */
+  recountBox: function () {
+    this.box = {
+      top: null,
+      right: null,
+      bottom: null,
+      left: null
+    };
+
+    for (var i in this.lines) {
+      this.resizeBox(this.lines[i].getBox());
+    }
+
+    return this;
+  },
+
+  /**
+   *
+   * @param {Object} box
+   * @returns {Turtle}
+   */
+  resizeBox: function (box) {
+    this.box.top = this.box.top !== null ? Math.max(this.box.top, box.top) : box.top;
+    this.box.right = this.box.right !== null ? Math.max(this.box.right, box.right) : box.right;
+    this.box.bottom = this.box.bottom !== null ? Math.min(this.box.bottom, box.bottom) : box.bottom;
+    this.box.left = this.box.left !== null ? Math.min(this.box.left, box.left) : box.left;
+
+    return this;
+  },
+
+  /**
+   *
+   * @returns {Turtle}
+   */
+  clone: function () {
+    // @TODO deep clone!
+    var turtle = new Turtle();
+
+    for (var i in this.lines) {
+      turtle.addLine(this.lines[i].clone());
+    }
+
+    return turtle;
+  },
+
+  /**
+   *
    * @param {CanvasRenderingContext2D} context
-   * @returns {undefined}
+   * @returns {Turtle}
    */
   draw: function (context) {
     for (var i = 0; i < this.lines.length; i++) {
@@ -141,14 +249,12 @@ Turtle.prototype = {
 
   /**
    *
-   * @param {Number} lineWidth
-   * @param {Number} r
-   * @param {Number} g
-   * @param {Number} b
    * @returns {String}
    */
   drawSvg: function () {
-    return this.lines.drawSvg();
+    return this.lines.map(function (line) {
+      return line.drawSvg();
+    }).join('');
   }
 };
 

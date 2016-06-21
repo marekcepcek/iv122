@@ -9,11 +9,84 @@
 <section>
 	<div class="panel panel-default">
 		<div class="panel-heading container-fluid">
-			Úsečky a priesečníky
-			<a href="#" class="btn btn-success pull-right js__section-a__generate-button" role="button">Generovať</a>
+			<div class="row">
+				<div class="col-md-4 content__title">
+					Číselné bludisko
+				</div>
+				<div class="col-md-2">Štart(x):
+					<input type="number" value="0" min="0" class="js__section-a__input form-control" data-name="startX">
+				</div>
+				<div class="col-md-2">Štart(y):
+					<input type="number" value="0" min="0" class="js__section-a__input form-control" data-name="startY">
+				</div>
+				<div class="col-md-2">Ciel(x):
+					<input type="number" value="4" min="0" class="js__section-a__input form-control" data-name="endX">
+				</div>
+				<div class="col-md-2">Ciel(y):
+					<input type="number" value="4" min="0" class="js__section-a__input form-control" data-name="endY">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Bludisko:
+					<textarea class="js__section-a__input form-control" data-name="maze">[[2,4,4,3,3],[2,3,3,2,3],[3,2,3,1,3],[2,2,3,2,1],[1,4,4,4,0]]</textarea>
+				</div>
+			</div>
 		</div>
 		<div class="panel-body">
-			<div class="js__section-a__lines-output"></div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Obrázok</div>
+						<div class="panel-body">
+							<div class="js__section-a__image-output"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Text</div>
+						<div class="panel-body">
+							<div class="js__section-a__text-output"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- B -->
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading container-fluid">
+			<div class="row">
+				<div class="col-md-7 content__title">
+					Bludisko (pohyb v ľavo / rovno)
+				</div>
+				<div class="col-md-1">Štart(x):
+					<input type="number" value="1" min="0" class="js__section-b__input form-control" data-name="startX">
+				</div>
+				<div class="col-md-1">Štart(y):
+					<input type="number" value="0" min="0" class="js__section-b__input form-control" data-name="startY">
+				</div>
+				<div class="col-md-1">Ciel(x):
+					<input type="number" value="8" min="0" class="js__section-b__input form-control" data-name="endX">
+				</div>
+				<div class="col-md-1">Ciel(y):
+					<input type="number" value="3" min="0" class="js__section-b__input form-control" data-name="endY">
+				</div>
+				<div class="col-md-1">Veľkosť:
+					<input type="number" value="35" min="0" class="js__section-b__input form-control" data-name="size">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Bludisko:
+					<textarea class="js__section-b__input form-control" data-name="maze">[[1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,1,0,1,0,1,0,0,0,0,0,1],[1,0,1,0,0,0,1,0,1,1,1,0,1],[1,0,1,0,1,1,1,0,1,0,1,0,1],[1,0,1,0,0,0,1,0,1,1,1,0,1],[1,0,1,0,1,1,1,1,1,0,1,0,1],[1,0,1,0,1,0,0,0,1,1,1,0,1],[1,0,1,1,1,1,1,1,1,0,1,0,1],[1,0,0,0,0,0,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1]]</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="js__section-b__image-output"></div>
 		</div>
 	</div>
 </section>

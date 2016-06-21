@@ -61,5 +61,6 @@
     event.preventDefault();
     work();
   });
+
   work();
 })();

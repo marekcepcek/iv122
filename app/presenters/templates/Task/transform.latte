@@ -9,11 +9,82 @@
 <section>
 	<div class="panel panel-default">
 		<div class="panel-heading container-fluid">
-			Úsečky a priesečníky
-			<a href="#" class="btn btn-success pull-right js__section-a__generate-button" role="button">Generovať</a>
+			<div class="row">
+				<div class="col-md-6 content__title">
+					Transformácie
+				</div>
+				<div class="col-md-2">Počet strán:
+					<input type="number" value="7" min="2" class="js__section-a__input form-control" data-name="n">
+				</div>
+				<div class="col-md-2">Veľkosť:
+					<input type="number" value="15" class="js__section-a__input form-control" data-name="size">
+				</div>
+				<div class="col-md-2">Počet iterácií:
+					<input type="number" value="20" min="0" class="js__section-a__input form-control" data-name="iterationsCount">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Transformácia:
+					<textarea class="js__section-a__input form-control" data-name="transformation">rotate(15);scale(1.1, 1.1);translate(5, 10)</textarea>
+				</div>
+			</div>
 		</div>
 		<div class="panel-body">
-			<div class="js__section-a__lines-output"></div>
+			<div class="js__section-a__output"></div>
+		</div>
+	</div>
+</section>
+
+<!-- B -->
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading container-fluid">
+			<div class="row">
+				<div class="col-md-6 content__title">
+					MRCM
+				</div>
+				<div class="col-md-2">Počet strán:
+					<input type="number" value="20" min="2" class="js__section-b__input form-control" data-name="n">
+				</div>
+				<div class="col-md-2">Veľkosť:
+					<input type="number" value="100" class="js__section-b__input form-control" data-name="size">
+				</div>
+				<div class="col-md-2">Počet iterácií:
+					<input type="number" value="3" min="0" class="js__section-b__input form-control" data-name="iterationsCount">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Transformácia:
+					<textarea class="js__section-b__input form-control" data-name="transformation">scale(0.5,0.5);custom([[0.5,0,-50],[0,0.5,85],[0,0,1]]);custom([[0.5,0,50],[0,0.5,85],[0,0,1]])</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="js__section-b__output"></div>
+		</div>
+	</div>
+</section>
+
+<!-- C -->
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading container-fluid">
+			<div class="row">
+				<div class="col-md-10 content__title">
+					MRCM - Kombinácia s LSystémom
+				</div>
+				<div class="col-md-2">Počet iterácií:
+					<input type="number" value="2" min="0" class="js__section-c__input form-control" data-name="iterationsCount">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Transformácia:
+					<textarea class="js__section-c__input form-control" data-name="transformation">custom([[0.849,0.037,75],[-0.037,0.849,183],[0,0,1]]);custom([[0.197,-0.226,400],[0.226,0.197,49],[0,0,1]]);custom([[-0.15,0.283,575],[0.26,0.237,84],[0,0,1]]);custom([[0,0,500],[0,0.16,0],[0,0,1]])</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="js__section-c__output"></div>
 		</div>
 	</div>
 </section>

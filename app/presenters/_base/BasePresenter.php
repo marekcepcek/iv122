@@ -98,14 +98,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 				'action' => 'analysis'
 			],
 			(object)[
-				'title' => 'Grafy',
-				'presenter' => 'Task',
-				'action' => 'graphs'
-			],
-			(object)[
-				'title' => 'Bludisko',
-				'presenter' => 'Task',
-				'action' => 'maze'
+				'title' => 'Bludiská',
+				'subTabs' => [
+					(object)[
+						'title' => 'Riešenie',
+						'presenter' => 'Task',
+						'action' => 'graphs'
+					],
+					(object)[
+						'title' => 'Generovanie',
+						'presenter' => 'Task',
+						'action' => 'maze'
+					],
+				]
 			],
 		];
 

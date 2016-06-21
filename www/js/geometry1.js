@@ -45,8 +45,8 @@
   };
 
   var work = function () {
-    polygonOutput.innerHTML = regularPolygon(countInput.value, sizeInput.value).drawSvg();
-    starOutput.innerHTML = regularStar(countInput.value, sizeInput.value, 5).drawSvg();
+    polygonOutput.innerHTML = (new VectorImage()).add(regularPolygon(countInput.value, sizeInput.value)).drawSvg();
+    starOutput.innerHTML = (new VectorImage()).add(regularStar(countInput.value, sizeInput.value, 5)).drawSvg();
   };
 
   countInput.addEventListener('change', work);
@@ -96,10 +96,10 @@
 
   /**
    *
-   * @returns {VectorImage}
+   * @returns {Array}
    */
   var absolutePentagram = function () {
-    var pentagram = new VectorImage();
+    var pentagram = [];
 
     var length = 100;
     var angle = 180 - (3 / 5) * 180;
@@ -115,7 +115,7 @@
 
     for (var i = 0; i < 5; i++) {
       for (var j = i; j < 5; j++) {
-        pentagram.add(new Line(points[i], points[j]));
+        pentagram.push(new Line(points[i], points[j]));
       }
     }
 
@@ -144,7 +144,7 @@
   };
 
   var getGrid = function (n, size) {
-    var grid = new VectorImage();
+    var grid = [];
 
     size /= 2;
     
@@ -155,11 +155,11 @@
       x = step * i;
       y = Math.sqrt(size * size - x * x);
 
-      grid.add(new Line(new Point(x, y), new Point(x, -y)));
-      grid.add(new Line(new Point(-x, y), new Point(-x, -y)));
+      grid.push(new Line(new Point(x, y), new Point(x, -y)));
+      grid.push(new Line(new Point(-x, y), new Point(-x, -y)));
 
-      grid.add(new Line(new Point(y, x), new Point(-y, x)));
-      grid.add(new Line(new Point(y, -x), new Point(-y, -x)));
+      grid.push(new Line(new Point(y, x), new Point(-y, x)));
+      grid.push(new Line(new Point(y, -x), new Point(-y, -x)));
     }
 
     return grid;
@@ -203,13 +203,13 @@
     var n = countInput.value;
     var size = sizeInput.value;
 
-    relativeOutput.innerHTML = relativePentagram().drawSvg();
-    absoluteOutput.innerHTML = absolutePentagram().drawSvg();
+    relativeOutput.innerHTML = (new VectorImage()).add(relativePentagram()).drawSvg();
+    absoluteOutput.innerHTML = (new VectorImage()).add(absolutePentagram()).drawSvg();
 
-    bOutput.innerHTML = getSpiral(n, size).drawSvg();
-    cOutput.innerHTML = getGrid(n, size).drawSvg();
-    dOutput.innerHTML = getTriangles(n, size).drawSvg();
-    eOutput.innerHTML = getDiamonds(n, size).drawSvg();
+    bOutput.innerHTML = (new VectorImage()).add(getSpiral(n, size)).drawSvg();
+    cOutput.innerHTML = (new VectorImage()).add(getGrid(n, size)).drawSvg();
+    dOutput.innerHTML = (new VectorImage()).add(getTriangles(n, size)).drawSvg();
+    eOutput.innerHTML = (new VectorImage()).add(getDiamonds(n, size)).drawSvg();
   };
 
   countInput.addEventListener('change', work);
@@ -346,10 +346,10 @@
     var count = countInput.value;
     var size = sizeInput.value;
     
-    kochOutput.innerHTML = kochFractal(count, size).drawSvg();
-    treeOutput.innerHTML = treeFractal(count, size).drawSvg();
-    triangleOutput.innerHTML = nflake(3, count, size).drawSvg();
-    pentaflakeOutput.innerHTML = nflake(5, count, size).drawSvg();
+    kochOutput.innerHTML = (new VectorImage()).add(kochFractal(count, size)).drawSvg();
+    treeOutput.innerHTML = (new VectorImage()).add(treeFractal(count, size)).drawSvg();
+    triangleOutput.innerHTML = (new VectorImage()).add(nflake(3, count, size)).drawSvg();
+    pentaflakeOutput.innerHTML = (new VectorImage()).add(nflake(5, count, size)).drawSvg();
   };
 
   countInput.addEventListener('change', work);

@@ -9,11 +9,45 @@
 <section>
 	<div class="panel panel-default">
 		<div class="panel-heading container-fluid">
-			Úsečky a priesečníky
-			<a href="#" class="btn btn-success pull-right js__section-a__generate-button" role="button">Generovať</a>
+			<div class="row">
+				<div class="col-md-8 content__title">
+					Monty Hall Problem
+				</div>
+				<div class="col-md-2">Počet iterácií:
+					<input type="number" value="1000" min="1" class="js__section-a__input form-control" data-name="iterationsCount">
+				</div>
+				<div class="col-md-2">
+					<a href="#" class="btn btn-success pull-right js__section-a__symulate-button" role="button">Symulovať</a>
+				</div>
+			</div>
 		</div>
 		<div class="panel-body">
-			<div class="js__section-a__lines-output"></div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">Zmena</div>
+						<div class="panel-body">
+							<div class="js__section-a__change-output"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">Bez zmeny</div>
+						<div class="panel-body">
+							<div class="js__section-a__stay-output"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">Náhodne</div>
+						<div class="panel-body">
+							<div class="js__section-a__random-output"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

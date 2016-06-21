@@ -12,9 +12,13 @@ class TaskPresenter extends BasePresenter
 			'line',
 			'circle',
 			'polygon',
+			'text',
 			'bitmapImage',
 			'vectorImage',
 			'turtle',
+			'lSystem',
+			'matrix',
+			'transformation',
 			$this->action,
 		];
 
