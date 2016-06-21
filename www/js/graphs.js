@@ -1,4 +1,27 @@
 
+/**
+ *
+ * @param {String} mazeString
+ * @returns {Matrix}
+ */
+var parseMaze = function (mazeString) {
+  var maze = [];
+
+  mazeString.split(/\n/).map(function (rowString) {
+    if (rowString.trim() != '') {
+      var row = [];
+      rowString.split(' ').map(function (col) {
+        row.push(parseInt(col));
+      });
+
+      maze.push(row);
+    }
+  });
+
+  return new Matrix(maze);
+};
+
+
 /* A */
 (function () {
 
@@ -6,7 +29,7 @@
   var imageOutput = document.querySelector('.js__section-a__image-output');
   var textOutput = document.querySelector('.js__section-a__text-output');
 
-  var numberMaze = function (maze, startX, startY, endX, endY) {
+  var numberMaze = function (maze, startX, startY, endX, endY, size) {
     var width = maze.getN();
     var height = maze.getM();
 
@@ -47,7 +70,6 @@
 
     /* vykreslenie */
 
-    var size = 70;
     var image = new VectorImage();
 
     for (var x = 0; x < width; x++) {
@@ -73,36 +95,54 @@
       }
     }
 
-    /* analyza ciest + pridanie do obrazka */
+    /* analyza ciest */
     var lengths = [];
-    var step = size / (paths.length + 1);
+    var minLength = null;
 
     for (var i = 0; i < paths.length; i++) {
       var length = 0;
 
-      var move = -size / 2 + step * (i + 1);
-      var color = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
       for (var j = 1; j < paths[i].length; j++) {
-
         length += Math.abs(paths[i][j][0] - paths[i][j - 1][0]);
         length += Math.abs(paths[i][j][1] - paths[i][j - 1][1]);
+      }
 
+      minLength = minLength !== null ? Math.min(minLength, length) : length;
+      
+      lengths.push(length);
+    }
 
-        var line = new Line(new Point(paths[i][j][0] * size + move, paths[i][j][1] * size + move), new Point(paths[i][j - 1][0] * size + move, paths[i][j - 1][1] * size + move));
+    /* vyselektovanie najkratsich ciest */
+    var minPaths = [];
+
+    for (var i in paths) {
+      if (minLength == lengths[i]) {
+        minPaths.push(paths[i]);
+      }
+    }
+
+    /* vykreslenie najkratsich ciest */
+    var step = size / (minPaths.length + 1);
+
+    for (var i = 0; i < minPaths.length; i++) {
+
+      var move = -size / 2 + step * (i + 1);
+      var color = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+      for (var j = 1; j < minPaths[i].length; j++) {
+
+        var line = new Line(new Point(minPaths[i][j][0] * size + move, minPaths[i][j][1] * size + move), new Point(minPaths[i][j - 1][0] * size + move, minPaths[i][j - 1][1] * size + move));
         line.style['stroke'] = color;
-        line.style['opacity'] = 0.7;
+        line.style['opacity'] = 0.5;
         line.style['stroke-width'] = 2;
 
         image.add(line);
       }
-
-      lengths.push(length);
     }
 
     return {
       image: image,
-      paths: paths,
-      shortestPathLength: lengths.length > 0 ? Math.min.apply(Math, lengths) : 0
+      minPaths: minPaths,
+      minLength: minLength
     };
   };
 
@@ -114,9 +154,10 @@
     }
  
     try {
-      var maze = numberMaze(new Matrix(JSON.parse(values['maze'])), parseInt(values['startX']), parseInt(values['startY']), parseInt(values['endX']), parseInt(values['endY']));
 
-      textOutput.innerHTML = 'Počet riešení: ' + maze.paths.length + '<br><br>Najkratšia cesta: ' + maze.shortestPathLength + '<br><br>' + maze.paths.map(function (path) {
+      var maze = numberMaze(parseMaze(values['maze']), parseInt(values['startX']), parseInt(values['startY']), parseInt(values['endX']), parseInt(values['endY']), parseInt(values['size']));
+
+      textOutput.innerHTML = 'Počet riešení: ' + maze.minPaths.length + '<br><br>Dĺžka: ' + maze.minLength + '<br><br>' + maze.minPaths.map(function (path) {
         return path.map(function (point) {
           return '(' + point[0] + ', ' + point[1] + ')';
         }).join(', ');
@@ -286,7 +327,7 @@
     }
 
     try {
-      var mazeSolution = getMazeSolution(new Matrix(JSON.parse(values['maze'])), parseInt(values['startX']), parseInt(values['startY']), parseInt(values['endX']), parseInt(values['endY']), parseInt(values['size']));
+      var mazeSolution = getMazeSolution(parseMaze(values['maze']), parseInt(values['startX']), parseInt(values['startY']), parseInt(values['endX']), parseInt(values['endY']), parseInt(values['size']));
 
       imageOutput.innerHTML = mazeSolution.drawSvg();
     } catch (e) {

@@ -30,7 +30,7 @@
       line = new Line(v, p);
 
       p = line.getPoint(ratio);
-      p.style.size = 1;
+      p.size = 1;
       image.add(p);
       i++;
     };

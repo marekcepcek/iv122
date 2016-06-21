@@ -5,15 +5,54 @@
 
 {block content}
 
+
 <!-- A -->
 <section>
 	<div class="panel panel-default">
 		<div class="panel-heading container-fluid">
-			Úsečky a priesečníky
-			<a href="#" class="btn btn-success pull-right js__section-a__generate-button" role="button">Generovať</a>
+			<div class="row">
+				<div class="col-md-10 content__title">
+					Lineárna regresia
+				</div>
+				<div class="col-md-2">
+					<a href="#" class="btn btn-success pull-right js__section-a__generate-button" role="button">Generovať</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Body:
+					<textarea class="js__section-a__points-input form-control"></textarea>
+				</div>
+			</div>
 		</div>
 		<div class="panel-body">
-			<div class="js__section-a__lines-output"></div>
+			<div class="js__section-a__image-output"></div>
+		</div>
+	</div>
+</section>
+
+<!-- B -->
+<section>
+	<div class="panel panel-default">
+		<div class="panel-heading container-fluid">
+			<div class="row">
+				<div class="col-md-8 content__title">
+					Detekcia zhlukov
+				</div>
+				<div class="col-md-2">Počet zhlukov (k):
+					<input type="number" value="5" min="1" class="js__section-b__k-input form-control">
+				</div>
+				<div class="col-md-2">
+					<a href="#" class="btn btn-success pull-right js__section-b__generate-button" role="button">Generovať</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Body:
+					<textarea class="js__section-b__points-input form-control"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="js__section-b__image-output"></div>
 		</div>
 	</div>
 </section>

@@ -204,7 +204,9 @@
     var maze = getMaze(parseInt(values['width']), parseInt(values['height']), parseInt(values['size']));
 
     imageOutput.innerHTML = maze.image.drawSvg();
-    textOutput.innerHTML = maze.maze.toString();
+    textOutput.value = maze.maze.toArray().map(function (row) {
+      return row.join(' ');
+    }).join('\n');
   };
 
   for (var i = 0; i < inputs.length; i++) {

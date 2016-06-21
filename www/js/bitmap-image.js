@@ -13,10 +13,10 @@ BitmapImage.prototype = {
     var index = this.getIndex(x, y);
 
     if (index !== null) {
-      this.imageData.data[index] = r;
-      this.imageData.data[index + 1] = g;
-      this.imageData.data[index + 2] = b;
-      this.imageData.data[index + 3] = a;
+      this.imageData.data[index] = Math.max(0, Math.min(255, Math.round(r)));
+      this.imageData.data[index + 1] = Math.max(0, Math.min(255, Math.round(g)));
+      this.imageData.data[index + 2] = Math.max(0, Math.min(255, Math.round(b)));
+      this.imageData.data[index + 3] = Math.max(0, Math.min(255, Math.round(a)));
     }
 
     return this;
@@ -43,6 +43,8 @@ BitmapImage.prototype = {
         this.set(x, y, r, g, b, a);
       }
     }
+
+    return this;
   },
   
   line: function (x1, y1, x2, y2, r, g, b, a) {
@@ -76,11 +78,14 @@ BitmapImage.prototype = {
         }
       }
     }
-    
+
+    return this;
   },
 
   draw: function (context, left, top) {
     context.putImageData(this.imageData, left, top);
+
+    return this;
   }
 };
 

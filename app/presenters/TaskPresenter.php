@@ -2,24 +2,32 @@
 
 namespace App\Presenters;
 
+use Nette\Utils\Strings;
+
 class TaskPresenter extends BasePresenter
 {
 	public function getJsFilenames()
 	{
 		$jsFilenames = [
+			'vendor/math.min',
+			'vendor/colorsys',
 			'point',
 			'vector',
 			'line',
 			'circle',
+			'triangle',
 			'polygon',
 			'text',
-			'bitmapImage',
-			'vectorImage',
+			'bitmap-image',
+			'vector-image',
 			'turtle',
 			'lSystem',
 			'matrix',
 			'transformation',
-			$this->action,
+			'active-edge-list',
+			'delaunay-triangulation',
+			'voronoi-diagram',
+			Strings::webalize($this->action),
 		];
 
 		return array_merge(parent::getJsFilenames(), $jsFilenames);

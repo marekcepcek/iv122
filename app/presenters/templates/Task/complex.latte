@@ -9,13 +9,47 @@
 <section>
 	<div class="panel panel-default">
 		<div class="panel-heading container-fluid">
-			Úsečky a priesečníky
-			<a href="#" class="btn btn-success pull-right js__section-a__generate-button" role="button">Generovať</a>
+			<div class="row">
+				<div class="col-md-4 content__title">
+					Fraktály
+				</div>
+				<div class="col-md-4">Typ:
+					<select class="js__section-a__input form-control" data-name="type">
+						<option value="newton">Newton</option>
+						<option value="mendelbrot" selected>Mendelbrot</option>
+						<option value="julian">Julian</option>
+					</select>
+				</div>
+				<div class="col-md-2">Šírka:
+					<input type="number" value="250" class="js__section-a__input form-control" data-name="width">
+				</div>
+				<div class="col-md-2">Výška:
+					<input type="number" value="250" class="js__section-a__input form-control" data-name="height">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 col-md-offset-2">Posun (x):
+					<input type="number" value="-150" class="js__section-a__input form-control" data-name="moveX">
+				</div>
+				<div class="col-md-2">Posun (y):
+					<input type="number" value="-125" class="js__section-a__input form-control" data-name="moveY">
+				</div>
+				<div class="col-md-2">Zoom (x):
+					<input type="number" value="80" min="0.01" step="0.01" class="js__section-a__input form-control" data-name="ratio">
+				</div>
+				<div class="col-md-2">Počet iterácií:
+					<input type="number" value="15" class="js__section-a__input form-control" data-name="iterationsCount">
+				</div>
+				<div class="col-md-2">Konštanta:
+					<input type="text" value="0" placeholder="napr. 0, i, -0.13+0.75i, ... " title="Može byť aj complexné číslo" class="js__section-a__input form-control" data-name="constant">
+				</div>
+			</div>
 		</div>
 		<div class="panel-body">
-			<div class="js__section-a__lines-output"></div>
+			<canvas class="js__section-a__image-output"></canvas>
 		</div>
 	</div>
 </section>
+
 
 {/block}

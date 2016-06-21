@@ -10,13 +10,10 @@ var Point = function (x, y) {
   this.y = parseFloat(y);
   this.selected = false;
 
+  this.size = 4;
+
   this.style = {
-    color: {
-      r: 255,
-      g: 0,
-      b: 0
-    },
-    size: 4
+    fill: 'red'
   };
 };
 
@@ -43,15 +40,29 @@ Point.prototype = {
    * @returns {String}
    */
   drawSvg: function () {
-    return '<rect x="' + (this.x - this.style.size / 2) + '" y="' + (this.y - this.style.size / 2)+ '" width="' + this.style.size + '" height="' + this.style.size + '" style="fill:rgb(' + this.style.color.r + ',' + this.style.color.g + ',' + this.style.color.b + ');" />';
+    return '<rect x="' + (this.x - this.size / 2) + '" y="' + (this.y - this.size / 2)+ '" width="' + this.size + '" height="' + this.size + '" style="' + this.getStyle() + '" />';
+  },
+
+  /**
+   *
+   * @returns {String}
+   */
+  getStyle: function () {
+    var style = '';
+
+    for (var name in this.style) {
+      style += name + ':' + this.style[name] + ';';
+    }
+
+    return style;
   },
 
   getBox: function () {
     return {
-      top: this.y + this.style.size / 2,
-      right: this.x + this.style.size / 2,
-      bottom: this.y - this.style.size / 2,
-      left: this.x - this.style.size / 2
+      top: this.y + this.size / 2,
+      right: this.x + this.size / 2,
+      bottom: this.y - this.size / 2,
+      left: this.x - this.size / 2
     };
   },
 
