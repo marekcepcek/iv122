@@ -1,6 +1,6 @@
 {block contentHeader}
 	<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-fraktaly-chaos.pdf" class="btn btn-default pull-right" role="button">Zadanie</a>
-	<a href="#" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
+	<a href="/js/{$presenter->action}.js" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
 {/block}
 
 {block content}
@@ -85,7 +85,41 @@
 			</div>
 		</div>
 		<div class="panel-body">
+
 			<div class="js__section-b__l-system-output"></div>
+			<br>
+			Aplikácia umožňuje zadať lubovolný počet pravidiel a viacero symbolov pre každú operáciu oddelenú čiarkami
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-4">
+					<strong>Hilbertova křivka</strong><br><br>
+					Axiom: A<br>
+					Pravidá: A => -BF+AFA+FB-, B => +AF-BFB-FA+<br>
+					Uhol: 90<br>
+					Forward: F<br>
+					Left: -<br>
+					Right: +<br>
+				</div>
+				<div class="col-md-4">
+					<strong>Sierpinského fraktál</strong><br><br>
+					Axiom: A
+					Pravidá: A => +B-A-B+, B => -A+B+A-<br>
+					Uhol: 60<br>
+					Forward: A,B<br>
+					Left: -<br>
+					Right: +<br>
+				</div>
+				<div class="col-md-4">
+					<strong>Kochova vločka</strong><br><br>
+					Axiom: F--F--F<br>
+					Pravidá: F => F+F--F+F<br>
+					Uhol: 60<br>
+					Forward: F<br>
+					Left: -<br>
+					Right: +<br>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

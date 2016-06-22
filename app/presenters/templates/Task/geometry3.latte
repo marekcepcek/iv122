@@ -1,6 +1,6 @@
 {block contentHeader}
 	<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-geom-alg.pdf" class="btn btn-default pull-right" role="button">Zadanie</a>
-	<a href="#" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
+	<a href="/js/{$presenter->action}.js" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
 {/block}
 
 {block content}
@@ -13,6 +13,7 @@
 			<a href="#" class="btn btn-success pull-right js__section-a__generate-button" role="button">Generovať</a>
 		</div>
 		<div class="panel-body">
+			Zisťovanie priesečníkov pomocou všeobecných rovníc a vektorov s ošetrenými špeciálnymi prípadmi
 			<div class="js__section-a__lines-output"></div>
 		</div>
 	</div>
@@ -23,6 +24,8 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Triangulácia, konvexný obal, ...</div>
 		<div class="panel-body">
+			Jedná sa o externú aplikáciu vytvorenú v rámci predmetu "PA093 Projekt z geometrických algoritmů". Umožňuje pridávať, mazať a presúvať body. Prezentuje Delaunay trianguláciu,
+			Voronoi diagram, k-D strom, Gift Wraping a Graham scan konvexný obal. Aplikácia a zdrojové kódy je dostupná aj na <a href="http://g.cehost.sk/">tu</a>.
 			<iframe src="http://g.cehost.sk/" style="width:100%;height:540px;border: 1px solid #ddd;"></iframe>
 		</div>
 	</div>

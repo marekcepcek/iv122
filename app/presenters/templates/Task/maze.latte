@@ -1,6 +1,6 @@
 {block contentHeader}
 	<a href="http://www.fi.muni.cz/~xpelanek/IV122/zadani/zadani-generovani-bludist.pdf" class="btn btn-default pull-right" role="button">Zadanie</a>
-	<a href="#" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
+	<a href="/js/{$presenter->action}.js" class="btn btn-warning pull-right" role="button">Zdrojový kód</a>
 {/block}
 
 {block content}
@@ -11,7 +11,7 @@
 		<div class="panel-heading container-fluid">
 			<div class="row">
 				<div class="col-md-6 content__title">
-					Bludisko (braid)
+					Bludisko - braid
 				</div>
 				<div class="col-md-2">Šírka:
 					<input type="number" value="15" min="1" class="js__section-a__input form-control" data-name="width">
@@ -25,13 +25,14 @@
 			</div>
 		</div>
 		<div class="panel-body">
+			Vlastný algoritmus (občas sa objavý uzavretá cesta)
 			<div class="js__section-a__image-output"></div>
 		</div>
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading container-fluid">
 			<div class="content__title">
-				Bludisko - text
+				Textový výstup
 			</div>
 		</div>
 		<div class="panel-body">

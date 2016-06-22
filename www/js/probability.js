@@ -148,7 +148,7 @@
     if (p < EPSILON) {
       output.innerHTML = 'Nieje náhodné! (p = ' + p + ')';
     } else {
-      output.innerHTML = 'Je náhodné! (p = )' + p + ')';
+      output.innerHTML = 'Je náhodné! (p = ' + p + ')';
     }
 
   };
